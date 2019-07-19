@@ -18,7 +18,11 @@ class EventEmitter {
   }
 
   emit(type, message) {
-    this.events[type](message);
+    if (typeof this.events[type] === 'function') {
+      this.events[type](message)
+    } else {
+      console.error('unknown event type')
+    }
   }
 }
 
