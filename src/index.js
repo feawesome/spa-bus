@@ -1,8 +1,9 @@
-class EventEmitter {
+class SPAEventBus {
   constructor() {
     this.events = {};
     this.addEventListener = this.addEventListener.bind(this);
     this.emit = this.emit.bind(this);
+    this.removeEventListener = this.removeEventListener.bind(this);
   }
 
   addEventListener(type, callBack) {
@@ -14,7 +15,19 @@ class EventEmitter {
       throw new Error('callBack type must be function');
     }
 
-    if (!(type in this.events)) this.events[type] = callBack;
+    if (!(type in this.events)) {
+      this.events[type] = callBack;
+    } else {
+      throw new Error('this event is listening');
+    }
+  }
+
+  removeEventListener(type) {
+    if (typeof type !== 'string') {
+      throw new Error('event type must be string');
+    }
+
+    delete this.events[type]
   }
 
   emit(type, message) {
@@ -26,4 +39,4 @@ class EventEmitter {
   }
 }
 
-export default new EventEmitter();
+export default new SPAEventBus();

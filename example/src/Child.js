@@ -1,8 +1,12 @@
 import React from 'react'
 import EventEmitter from '../../src'
 
-export default function Child() {
-  EventEmitter.emit('testEvent', '传值给父组件')
+export default class Child extends React.Component {
+  componentDidMount() {
+    EventEmitter.emit('testEvent', '传值给爷爷组件')
+  }
 
-  return <div>我是子组件</div>
+  render() {
+    return <div>孙子组件</div>
+  }
 }
