@@ -1,6 +1,6 @@
 {
   "name": "spa-bus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tools for multilevel components to pass values in any SPA",
   "main": "lib/index.js",
   "scripts": {
