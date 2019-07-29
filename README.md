@@ -44,7 +44,6 @@ class App extends React.Component{
 }
 
 render(<App />, document.getElementById('root'))
-
 ```
 
 
@@ -54,6 +53,20 @@ render(<App />, document.getElementById('root'))
 ``` bash
 npm install spa-bus --save
 ```
+
+### API
+- addEventListener:
+  * `type` : `[ String ]` : event type for listening
+
+  * `callBack` : `[ String ]` : callback for the event emited
+
+- emit:
+  * `type` : `[ String ]` : event type to emit
+
+  * `params` : `[ any ]` : parameters to accross
+
+- removeEventListener:
+  * `type` : `[ String ]` : event type for removing
 
 ### Author
 **Peng Zhang**

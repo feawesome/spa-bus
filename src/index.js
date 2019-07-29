@@ -30,9 +30,9 @@ class SPAEventBus {
     delete this.events[type]
   }
 
-  emit(type, message) {
+  emit(type, params) {
     if (typeof this.events[type] === 'function') {
-      this.events[type](message)
+      this.events[type](params)
     } else {
       console.error('unknown event type')
     }
