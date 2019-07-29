@@ -66,7 +66,7 @@ npm install spa-bus --save
   * `params` : `[ any ]` : parameters to accross
 
 - removeEventListener:
-  * `type` : `[ String ]` : event type for removing
+  * `type` : `[ String ]` : event type for removal
 
 ### Author
 **Peng Zhang**
