@@ -6,12 +6,22 @@ import EventEmitter from '../../src'
 class App extends React.Component{
   constructor(props) {
     super(props)
-    EventEmitter.addEventListener('testEvent', this.testFunction)
+    EventEmitter.addEventListener('testEvent', this.testFunction1)
+    EventEmitter.addEventListener('testEvent', this.testFunction2)
   }
 
-  testFunction(args) {
-    console.log(this)
-    console.log(args)
+  testFunction1(args) {
+    console.log('testFunction1', args)
+  }
+
+  testFunction2(args) {
+    console.log('testFunction2', args)
+  }
+
+  componentDidMount() {
+    document.onclick = () => {
+      EventEmitter.removeEventListener('testEvent', this.testFunction2)
+    }
   }
 
   render() {

@@ -8,34 +8,52 @@ class SPAEventBus {
 
   addEventListener(type, callBack) {
     if (typeof type !== 'string') {
-      throw new Error('event type must be string');
+      console.error('event type must be string');
     }
 
     if (typeof callBack !== 'function') {
-      throw new Error('callBack type must be function');
+      console.error('callBack type must be function');
     }
 
     if (!(type in this.events)) {
-      this.events[type] = callBack;
+      this.events[type] = [callBack];
     } else {
-      throw new Error('this event is listening');
+      this.events[type].push(callBack);
     }
   }
 
-  removeEventListener(type) {
+  removeEventListener(type, callBack) {
     if (typeof type !== 'string') {
-      throw new Error('event type must be string');
+      console.error('event type must be string');
     }
 
-    delete this.events[type]
+    if (Array.isArray(this.events[type])) {
+      this.events[type] = this.events[type].filter(item => item !== callBack);
+      if (this.events[type].length === 0) {
+        delete this.events[type];
+      }
+    } else {
+      console.error('This event is not being listened');
+    }
   }
 
-  emit(type, params) {
-    if (typeof this.events[type] === 'function') {
-      this.events[type](params)
-    } else {
-      console.error('unknown event type')
+  emit(type, params, context = this) {
+    if (!(type in this.events)) {
+      console.error('unknown event type');
+      return
     }
+
+    if (Array.isArray(this.events[type])) {
+      this.events[type].forEach(item => {
+        if (typeof item  === 'function') {
+          item.call(context, params)
+        } else {
+          console.error('unknown event type')
+        }
+      })
+
+    }
+
   }
 }
 
