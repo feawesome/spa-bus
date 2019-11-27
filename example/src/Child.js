@@ -3,7 +3,7 @@ import EventEmitter from '../../src'
 
 export default class Child extends React.Component {
   componentDidMount() {
-    EventEmitter.emit('testEvent', '传值给爷爷组件')
+    EventEmitter.emit('testEvent', '传值给爷爷组件', this)
   }
 
   render() {

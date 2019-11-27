@@ -10,8 +10,8 @@ class App extends React.Component{
     EventEmitter.addEventListener('testEvent', this.testFunction2)
   }
 
-  testFunction1(args) {
-    console.log('testFunction1', args)
+  testFunction1() {
+    console.log('testFunction1', this)
   }
 
   testFunction2(args) {
